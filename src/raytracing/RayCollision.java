@@ -7,19 +7,25 @@ public class RayCollision {
 	public ArrayList<Barrier> barriers = new ArrayList<Barrier>();
 	public ArrayList<Ray> rays = new ArrayList<Ray>();
 	public ArrayList<Ray> raysToBeAdded = new ArrayList<Ray>();
+	public ArrayList<Ray> raysToBeRemoved = new ArrayList<Ray>();
 	
 	public void tick() {
 		for(Ray r : rays) {
 			if(!r.isExpired() && r.getT() < r.getTExpiration()) r.tick();
 			else if(!r.isExpired()){
 				r.setExpired(true);
-				raysToBeAdded.add(new Ray((r.getTExpiration() - .001) * Math.cos(r.getAngle()) + r.getPx(), (r.getTExpiration() - .001) * Math.sin(r.getAngle()) + r.getPy(), r.getReflectionAngle(), this));
+				raysToBeRemoved.add(r);
+				raysToBeAdded.add(new Ray((r.getTExpiration() - .00001) * Math.cos(r.getAngle()) + r.getPx(), (r.getTExpiration() - .00001) * Math.sin(r.getAngle()) + r.getPy(), r.getReflectionAngle(), this));
 			}
 		}
 		for(Ray r : raysToBeAdded) {
 			rays.add(r);
 		}
 		raysToBeAdded = new ArrayList<Ray>();
+		for(Ray r : raysToBeRemoved) {
+			rays.remove(r);
+		}
+		raysToBeRemoved = new ArrayList<Ray>();
 		
 	}
 	

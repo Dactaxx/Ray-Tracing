@@ -35,20 +35,21 @@ public class Ray {
 		}
 //		reflectionAngle = Math.PI / 2d + (-this.angle - bCollisionAngle + Math.PI / 2d) + bCollisionAngle;
 		reflectionAngle = 2 * (Math.PI + bCollisionAngle - angle) + angle;
-		System.out.println(reflectionAngle);
+//		System.out.println(reflectionAngle);
 	}
 	
 	public void tick() {
-		t+=2;
+		t+=10;
 		x = t * Math.cos(angle) + px;
 		y = t * Math.sin(angle) + py;
 		
 	}
 	
 	public void render(Graphics2D g2d) {
-		g2d.setColor(new Color(255, 0, 0));
+		g2d.setColor(new Color(255, 255, 255));
 		g2d.setStroke(new BasicStroke(2));
-		g2d.drawLine((int)px, 1080 - (int)py, (int)x, 1080 - (int)y);
+//		g2d.drawLine((int)px, 1080 - (int)py, (int)x, 1080 - (int)y);
+		g2d.fillOval((int)x, (int)y, 1, 1);
 	}
 	
 	public double getAngle() {

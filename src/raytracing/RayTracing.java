@@ -18,8 +18,8 @@ public class RayTracing {
 		rc.barriers.add(new Barrier(440, 1080 - 100, 440, 100));
 		rc.barriers.add(new Barrier(1920 - 440, 1080 - 100, 1920 - 440, 100));
 		
-		for(int i = 0; i < 12; i++)
-		rc.rays.add(new Ray(960, 540, i * Math.PI/6d, rc));
+		for(int i = 0; i < 23040; i++)
+		rc.rays.add(new Ray(960, 540, i * Math.PI/11520d, rc));
 		
 		gis.add(new GraphicsInterface() {
 			@Override
